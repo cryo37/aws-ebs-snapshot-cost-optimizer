@@ -4,6 +4,8 @@
 
 ---
 
+Watch the demo: 👉 https://drive.google.com/file/d/1G7YxK5_rcsF6OXEiJMj32oPWojezYovn/view?usp=sharing
+
 ## Table of Contents
 
 - [Problem Statement](#-problem-statement)
@@ -17,7 +19,6 @@
 - [EventBridge Scheduler](#-eventbridge-scheduler)
 - [Advanced Features](#-advanced-features)
 - [Key Learnings](#-key-learnings)
-- [Future Enhancements](#-future-enhancements)
 
 ---
 
@@ -50,7 +51,7 @@ This project implements a **serverless AWS Lambda function** (Python + Boto3) th
 ---
 
 ## Architecture
-
+![Image](https://github.com/user-attachments/assets/23dab8ac-1bb5-4b50-ac28-ad9aa990b849)
 ```
 ┌──────────────────────────────────────────────────────────────┐
 │                        AWS Cloud                              │
@@ -90,29 +91,14 @@ This project implements a **serverless AWS Lambda function** (Python + Boto3) th
 ```
 aws-ebs-snapshot-cost-optimizer/
 │
-├── lambda/
-│   ├── ebs_snapshot_cleanup.py        # Core Lambda function
-│   └── requirements.txt               # Python dependencies (boto3)
+├── src/
+│   ├── cost_optimization.py        # Core Lambda function
 │
-├── iam/
-│   └── lambda_execution_policy.json   # Least-privilege IAM policy
-│
-├── eventbridge/
-│   └── schedule_rule.json             # EventBridge cron rule config
-│
-├── docs/
-│   ├── architecture-diagram.png       # Architecture diagram
-│   └── setup-guide.md                 # Detailed setup walkthrough
+├── architecture/
+│   ├── architecture-diagram.html       # Architecture diagram
+│   ├── architecture-diagram.jpeg       # Architecture diagram
 │
 ├── screenshots/
-│   ├── 01_ec2_instance_launch.png
-│   ├── 02_ebs_volume_snapshot.png
-│   ├── 03_lambda_function_config.png
-│   ├── 04_iam_role_permissions.png
-│   ├── 05_eventbridge_rule.png
-│   ├── 06_lambda_execution_result.png
-│   └── 07_cost_savings_snapshot.png
-│
 ├── .gitignore
 └── README.md
 ```
@@ -341,18 +327,6 @@ def notify_team(snapshot_id, volume_id):
 - **Stale resources = hidden costs** - Even small snapshot accumulations can significantly impact monthly bills at scale
 - Snapshots without a linked active volume are **safe to delete** - they serve no backup purpose
 
----
-
-## Future Enhancements
-
-- [ ] Add SNS email/Slack notification before deletion
-- [ ] Implement 90-day timestamp threshold filter
-- [ ] Export deletion report to S3 as CSV
-- [ ] Extend to other stale resources: unused Elastic IPs, unattached volumes, idle Load Balancers
-- [ ] Build CloudWatch Dashboard for cost savings visualization
-- [ ] Terraform / CloudFormation IaC deployment
-
----
 
 ## Author
 
@@ -370,4 +344,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 > If this project helped you, please consider giving it a star!
->>>>>>> 56c3669 (First)
